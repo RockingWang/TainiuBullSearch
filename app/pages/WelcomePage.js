@@ -13,7 +13,7 @@ export default class WelcomePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            countDown: 5
+            countDown: 3
         }
     }
 
@@ -22,7 +22,7 @@ export default class WelcomePage extends React.Component {
     };
 
     componentDidMount() {
-        setTimeout(() => {
+        this.interval = setInterval(() => {
             this.setState({
                 countDown: this.state.countDown - 1
             })
@@ -35,9 +35,14 @@ export default class WelcomePage extends React.Component {
                 })
             ]
         });
-        setTimeout(() => {
+        this.timer = setTimeout(() => {
             this.props.navigation && this.props.navigation.dispatch(resetAction);
-        }, 2000);
+        }, 3000);
+    }
+
+    componentWillUnmount(){
+        this.interval && clearInterval(this.interval);
+        this.timer && clearTimeout(this.timer);
     }
 
     render() {

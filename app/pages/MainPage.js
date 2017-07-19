@@ -7,6 +7,7 @@ import {
     TextInput,
     TouchableOpacity
 } from 'react-native';
+import {NavigationActions} from 'react-navigation';
 
 export default class MainPage extends React.Component {
     static navigationOptions = {
@@ -24,14 +25,18 @@ export default class MainPage extends React.Component {
             <View style={styles.searchBox}>
                 <View style={{flexDirection: 'row', flex: 1}}>
                     <TextInput
-                        style={{flex: 1, height: 30, margin: 5}}
-                        placeHolde="Type here to translate!">
-                    </TextInput>
+                        style={{flex: 1, height: 30, marginLeft:5,lineHeight:30, backgroundColor: 'white' }}
+                        underlineColorAndroid="transparent"
+                        placeHolde="Type here to translate!"
+                        defaultValue="Type here to translate!">
+            </TextInput>
 
-                    <TouchableOpacity style={{backgroundColor: '#DCA024', width: 30, height: 30, margin: 5}}>
-                        <Text style={{lineHeight: 30, textAlign: 'center'}}>🐂</Text>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('Search')}
+                    style={{backgroundColor: '#DCA024', width: 30, height: 30, margin: 5}}>
+                    <Text style={{lineHeight: 30, textAlign: 'center'}}>🐂</Text>
+                </TouchableOpacity>
+            </View>
             </View>
             <Text style={styles.tips}>Or select by:</Text>
             <View style={styles.presetBox}>
@@ -71,7 +76,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 50,
         borderRadius: 5,
-        lineHeight: 50,
+        lineHeight: 35,
         textAlign: 'center',
         overflow: 'hidden'
     }
