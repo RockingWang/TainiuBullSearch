@@ -2,55 +2,25 @@
  * Created by leechee on 2017-07-11.
  */
 
-import React, { Component } from 'react';
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    TextInput,
-    Button
-} from 'react-native';
+import React from 'react';
 import {
     StackNavigator
-} from 'react-navigation'
+} from 'react-navigation';
+import WelcomePage from './app/pages/WelcomePage'
+import MainPage from "./app/pages/MainPage";
+import SearchPage from "./app/pages/SearchPage";
+import PresetPage from "./app/pages/PresetPage";
+import DetailPage from "./app/pages/DetailPage";
 
-export default class TainiuBullSearch extends Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.searchBox}>
-                    <TextInput style={styles.searchInput} placeholder={"Search by Bull code, name, reg"}/>
-                    <Button style={styles.searchBtn} title="Search"/>
-                </View>
-            </View>
-        );
-    }
-}
+const App = StackNavigator({
+    Welcome: {screen: WelcomePage},
+    Main: {screen: MainPage},
+    Search: {screen: SearchPage},
+    Preset: {screen: PresetPage},
+    Detail: {screen: DetailPage}
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'black',
-    },
-    searchBox: {
-        height: 60,
-        width: 270,
-        backgroundColor: 'white',
-        borderRadius:5,
-        flexDirection: 'row'
-    },
-    searchInput: {
-        flex: 1,
-        backgroundColor: 'green',
-    },
-    searchBtn: {
-        width: 20,
-        backgroundColor: 'red',
-        margin: 5,
-    }
+}, {
+    initialRouteName: 'Welcome'
 });
 
-AppRegistry.registerComponent('TainiuBullSearch', () => TainiuBullSearch);
+module.exports = App;
