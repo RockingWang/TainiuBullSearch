@@ -20,7 +20,7 @@ const App = StackNavigator({
     Detail: {screen: DetailPage}
 
 }, {
-    initialRouteName: 'Welcome'
+    initialRouteName: 'Preset'
 });
 
 module.exports = App;

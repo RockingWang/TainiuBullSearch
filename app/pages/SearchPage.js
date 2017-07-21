@@ -3,7 +3,8 @@ import {
     View,
     Text,
     ListView,
-    StyleSheet
+    StyleSheet,
+    TouchableOpacity
 } from 'react-native';
 import BullDataRepository from '../common/BullDataRepository'
 
@@ -43,25 +44,29 @@ export default class SearchPage extends React.Component {
         if (rowData.DMS !== '') {
             DMS = ' | ' + rowData.DMS;
         }
-        return <View style={[styles.cell, backgroundStyle]}>
-            <View style={styles.leftBox}>
-                <Text style={styles.title}>{rowData.Name}</Text>
-                <Text style={styles.name}>{rowData.Pedigree}</Text>
-                <Text style={styles.code}>{rowData['NAAB Code']}</Text>
-                <Text
-                    style={styles.identification}>{rowData.Identification + aAa + DMS}</Text>
-            </View>
-            <View style={styles.rightBox}>
-                <View style={styles.tpi}>
-                    <Text style={styles.rightTitle}>TPI</Text>
-                    <Text style={styles.rightDesc}>2916</Text>
+        return <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Detail', {bullData: rowData})}
+        >
+            <View style={[styles.cell, backgroundStyle]}>
+                <View style={styles.leftBox}>
+                    <Text style={styles.title}>{rowData.Name}</Text>
+                    <Text style={styles.name}>{rowData.Pedigree}</Text>
+                    <Text style={styles.code}>{rowData['NAAB Code']}</Text>
+                    <Text
+                        style={styles.identification}>{rowData.Identification + aAa + DMS}</Text>
                 </View>
-                <View style={styles.nms}>
-                    <Text style={styles.rightTitle}>NM$</Text>
-                    <Text style={styles.rightDesc}>959</Text>
+                <View style={styles.rightBox}>
+                    <View style={styles.tpi}>
+                        <Text style={styles.rightTitle}>TPI</Text>
+                        <Text style={styles.rightDesc}>{rowData.TPI}</Text>
+                    </View>
+                    <View style={styles.nms}>
+                        <Text style={styles.rightTitle}>NM$</Text>
+                        <Text style={styles.rightDesc}>{rowData.NM$}</Text>
+                    </View>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     }
 
     static navigationOptions = {
